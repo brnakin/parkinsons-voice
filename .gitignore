@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Conda env
+env.yaml
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+*.data

@@ -113,7 +113,7 @@ An end-to-end machine learning pipeline that analyzes voice characteristics to d
 │   └── Ultimate_Project_Report_Parkinsons_Classification.md
 ├── data/
 │   ├── parkinsons.data                       # Oxford dataset
-│   └── parkinson.name
+│   └── parkinsons.name
 └── env.yaml                                 # Environment configuration
 ```
 

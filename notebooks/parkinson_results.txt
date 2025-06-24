@@ -1,0 +1,252 @@
+Project structure created
+=== PARKINSON'S DISEASE DETECTION PIPELINE ===
+Random state: 42
+
+=== LOADING DATA ===
+Dataset shape: (195, 24)
+Missing values: 0
+Duplicates: 0
+
+Target distribution:
+  Healthy (0): 48 (24.6%)
+  Parkinson's (1): 147 (75.4%)
+
+=== STATISTICAL ANALYSIS ===
+Top 10 significant features (FDR < 0.05):
+  PPE: p=1.59e-16, Cohen's d=1.447 (large)
+  spread1: p=1.59e-16, Cohen's d=1.581 (large)
+  MDVP:APQ: p=1.27e-11, Cohen's d=0.903 (large)
+  spread2: p=7.16e-11, Cohen's d=1.180 (large)
+  MDVP:Jitter(Abs): p=1.28e-09, Cohen's d=0.831 (large)
+  MDVP:PPQ: p=2.40e-09, Cohen's d=0.696 (medium)
+  MDVP:Shimmer(dB): p=3.14e-09, Cohen's d=0.865 (large)
+  MDVP:Shimmer: p=4.22e-09, Cohen's d=0.912 (large)
+  MDVP:Jitter(%): p=7.90e-09, Cohen's d=0.669 (medium)
+  Jitter:DDP: p=8.18e-09, Cohen's d=0.639 (medium)
+
+=== STATISTICAL POWER ANALYSIS ===
+Sample sizes: Healthy = 48, Parkinson's = 147, Total = 195
+
+Top 10 features by statistical power:
+  spread1: Power=1.000 (High), Cohen's d=1.581
+  PPE: Power=1.000 (High), Cohen's d=1.447
+  spread2: Power=1.000 (High), Cohen's d=1.180
+  MDVP:Fo(Hz): Power=1.000 (High), Cohen's d=0.959
+  MDVP:Flo(Hz): Power=1.000 (High), Cohen's d=0.949
+  MDVP:Shimmer: Power=1.000 (High), Cohen's d=0.912
+  MDVP:APQ: Power=1.000 (High), Cohen's d=0.903
+  HNR: Power=1.000 (High), Cohen's d=0.895
+  Shimmer:APQ5: Power=0.999 (High), Cohen's d=0.866
+  MDVP:Shimmer(dB): Power=0.999 (High), Cohen's d=0.865
+
+Power distribution:
+  High power (≥0.8): 20 features
+  Medium power (0.5-0.8): 2 features
+  Low power (<0.5): 0 features
+✓ Power analysis results saved
+
+=== VISUALIZING KEY FEATURES ===
+✓ Saved distributions for 6 key features
+
+=== CORRELATION ANALYSIS ===
+Top 15 target correlations:
+  spread1: 0.565
+  PPE: 0.531
+  spread2: 0.455
+  MDVP:Fo(Hz): -0.384
+  MDVP:Flo(Hz): -0.380
+  MDVP:Shimmer: 0.367
+  MDVP:APQ: 0.364
+  HNR: -0.362
+  Shimmer:APQ5: 0.351
+  MDVP:Shimmer(dB): 0.351
+  Shimmer:APQ3: 0.348
+  Shimmer:DDA: 0.348
+  D2: 0.340
+  MDVP:Jitter(Abs): 0.339
+  RPDE: 0.309
+
+=== FEATURE ENGINEERING ===
+✓ Created 5 engineered features
+New features: ['jitter_stability_ratio', 'shimmer_composite', 'voice_quality_index', 'frequency_range', 'frequency_cv']
+Correlation of new features with the target:
+jitter_stability_ratio   -0.435975
+shimmer_composite         0.360146
+voice_quality_index      -0.358165
+frequency_range           0.013754
+frequency_cv              0.033349
+dtype: float64
+
+=== DATA PREPARATION WITH LOSO CV ===
+Total subjects: 195
+Features: 27
+Train subjects: 137 (137 samples)
+Test subjects: 58 (58 samples)
+Train class distribution: {1: 103, 0: 34}
+Test class distribution: {1: 44, 0: 14}
+✓ No subject overlap between train and test sets
+
+=== FEATURE SCALING ===
+✓ Features scaled with RobustScaler
+
+=== SMOTE & FEATURE SELECTION ===
+After SMOTE: {1: 103, 0: 103}
+✓ Selected 20 consensus features
+Consensus features: ['spread2', 'MDVP:RAP', 'MDVP:Fo(Hz)', 'MDVP:APQ', 'Shimmer:APQ5', 'MDVP:PPQ', 'NHR', 'frequency_range', 'MDVP:Shimmer(dB)', 'spread1', 'shimmer_composite', 'voice_quality_index', 'MDVP:Fhi(Hz)', 'PPE', 'MDVP:Flo(Hz)', 'Jitter:DDP', 'Shimmer:APQ3', 'MDVP:Shimmer', 'Shimmer:DDA', 'jitter_stability_ratio']
+Correlation of consensus features with the target:
+spread2                   0.524383
+MDVP:RAP                  0.376226
+MDVP:Fo(Hz)              -0.387142
+MDVP:APQ                  0.483743
+Shimmer:APQ5              0.479514
+MDVP:PPQ                  0.402908
+NHR                       0.300172
+frequency_range           0.054313
+MDVP:Shimmer(dB)          0.478504
+spread1                   0.646348
+shimmer_composite         0.488288
+voice_quality_index      -0.482157
+MDVP:Fhi(Hz)             -0.193859
+PPE                       0.628846
+MDVP:Flo(Hz)             -0.417228
+Jitter:DDP                0.376241
+Shimmer:APQ3              0.476398
+MDVP:Shimmer              0.494679
+Shimmer:DDA               0.476367
+jitter_stability_ratio   -0.422557
+dtype: float64
+
+=== CREATING DATASET VARIANTS ===
+✓ Created 5 dataset variants
+Dataset variants: ['baseline', 'smote', 'feature_selected', 'smote_feature', 'pca']
+
+=== MODEL TRAINING ===
+
+Training on baseline dataset...
+  RandomForest: F1=0.946
+  SVM: F1=0.966
+  LogisticRegression: F1=0.907
+  KNN: F1=0.944
+  DecisionTree: F1=0.909
+  XGBoost: F1=0.957
+
+Training on smote dataset...
+  RandomForest: F1=0.956
+  SVM: F1=0.966
+  LogisticRegression: F1=0.921
+  KNN: F1=0.929
+  DecisionTree: F1=0.851
+  XGBoost: F1=0.956
+
+Training on feature_selected dataset...
+  RandomForest: F1=0.957
+  SVM: F1=0.955
+  LogisticRegression: F1=0.932
+  KNN: F1=0.967
+  DecisionTree: F1=0.920
+  XGBoost: F1=0.945
+
+Training on smote_feature dataset...
+  RandomForest: F1=0.956
+  SVM: F1=0.956
+  LogisticRegression: F1=0.933
+  KNN: F1=0.932
+  DecisionTree: F1=0.874
+  XGBoost: F1=0.956
+
+Training on pca dataset...
+  RandomForest: F1=0.946
+  SVM: F1=0.955
+  LogisticRegression: F1=0.899
+  KNN: F1=0.933
+  DecisionTree: F1=0.933
+  XGBoost: F1=0.936
+
+=== SELECTING TOP 5 MODELS ===
+Top models:
+1. KNN (feature_selected): F1=0.967
+2. SVM (baseline): F1=0.966
+3. SVM (smote): F1=0.966
+4. XGBoost (baseline): F1=0.957
+5. RandomForest (feature_selected): F1=0.957
+
+=== MODEL EVALUATION ===
+   rank     algorithm           dataset  accuracy  precision    recall  \
+0     1           KNN  feature_selected  0.948276   0.936170  1.000000   
+1     2           SVM          baseline  0.948276   0.955556  0.977273   
+2     3           SVM             smote  0.948276   0.955556  0.977273   
+3     4       XGBoost          baseline  0.931034   0.916667  1.000000   
+4     5  RandomForest  feature_selected  0.931034   0.916667  1.000000   
+
+   specificity        f1  balanced_accuracy   roc_auc  tn  fp  fn  tp  
+0     0.785714  0.967033           0.892857  0.916396  11   3   0  44  
+1     0.857143  0.966292           0.917208  0.964286  12   2   1  43  
+2     0.857143  0.966292           0.917208  0.970779  12   2   1  43  
+3     0.714286  0.956522           0.857143  0.957792  10   4   0  44  
+4     0.714286  0.956522           0.857143  0.971591  10   4   0  44  
+
+=== FINAL MODEL SELECTION ===
+Best model: KNN (feature_selected)
+F1: 0.967, Accuracy: 0.948
+Sensitivity: 1.000, Specificity: 0.786
+
+=== MODEL EXPLAINABILITY ===
+
+--- SHAP Analysis ---
+Using LinearExplainer/KernelExplainer for non-tree model...
+  0%|          | 0/50 [00:00<?, ?it/s]
+100%|██████████| 50/50 [00:04<00:00, 12.31it/s]
+Generating SHAP visualizations...
+SHAP values shape: (50, 20)
+X_explain shape: (50, 20)
+Feature names length: 20
+Expected value type: <class 'numpy.float64'>
+✓ Bar plot saved successfully
+✓ Detailed plot saved successfully
+Computing SHAP feature importance...
+shap_values_pos shape after processing: (50, 20)
+feature_importance_shap shape: (20,)
+feature_names length: 20
+
+Top 10 features by SHAP importance:
+  jitter_stability_ratio: 0.046
+  spread1: 0.044
+  MDVP:Flo(Hz): 0.033
+  spread2: 0.033
+  MDVP:Fo(Hz): 0.027
+  PPE: 0.026
+  MDVP:Fhi(Hz): 0.021
+  MDVP:RAP: 0.020
+  Jitter:DDP: 0.019
+  NHR: 0.016
+
+--- Local SHAP Explanations ---
+Starting local explanations...
+✓ Parkinson's case waterfall plot saved
+✓ Healthy case waterfall plot saved
+Saving SHAP data...
+✓ SHAP data saved successfully
+✓ SHAP analysis completed successfully!
+✓ SHAP visualizations saved to ../figures/
+✓ SHAP data saved to ../results/
+
+=== FINAL SUMMARY ===
+Models trained: 30
+Best F1 score: 0.967
+Best accuracy: 0.948
+
+✓ Results saved to ../
+✓ Pipeline completed successfully!
+
+==================================================
+🎉 PARKINSON'S DISEASE DETECTION PIPELINE COMPLETE
+==================================================
+Outputs saved in organized structure:
+PARKINSON'S PROJECT
+  ├── 📁 notebooks/     (analysis code)
+  ├── 📁 data/
+  │   ├── 📁 raw/       (original data)
+  │   └── 📁 processed/ (preprocessed datasets)
+  ├── 📁 models/        (trained models)
+  ├── 📁 results/       (evaluation results)
+  └── 📁 figures/       (visualizations)

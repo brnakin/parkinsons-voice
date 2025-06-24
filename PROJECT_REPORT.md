@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This project successfully developed a machine learning pipeline to detect Parkinson's disease using vocal biomarkers from sustained phonations. The best-performing model achieved an F1-score of 0.967 and accuracy of 0.948 using K-Nearest Neighbors (KNN) with feature selection on the UCI Parkinson's Dataset. The project employed rigorous statistical analysis, comprehensive feature engineering, and explainable AI techniques to create a clinically interpretable model for early Parkinson's disease screening.
+This project successfully developed a machine learning pipeline to detect Parkinson's disease using vocal biomarkers from sustained phonations. The best-performing model achieved an F1-score of 0.966 and accuracy of 0.948 using Support Vector Machine (SVM) with baseline features on the UCI Parkinson's Dataset. The project employed rigorous statistical analysis, comprehensive feature engineering, and explainable AI techniques to create a clinically interpretable model for early Parkinson's disease screening.
 
 ## 1. Project Overview
 
@@ -11,9 +11,9 @@ This project successfully developed a machine learning pipeline to detect Parkin
 **Dataset**: UCI Parkinson's Dataset containing 195 samples with 24 vocal biomarker features.
 
 **Key Results**:
-- Best model: KNN with feature selection (F1=0.967, Accuracy=0.948)
-- Sensitivity: 100% (perfect detection of Parkinson's cases)
-- Specificity: 78.6% (good healthy case identification)
+- Best model: SVM with baseline features (F1=0.966, Accuracy=0.948)
+- Sensitivity: 97.7% (excellent detection of Parkinson's cases)
+- Specificity: 85.7% (good healthy case identification)
 - 30 models trained across 5 dataset variants and 6 algorithms
 
 ## 2. Methodology and Statistical Approaches
@@ -216,52 +216,52 @@ Six algorithms were evaluated:
 
 | Rank | Algorithm | Dataset | F1-Score | Accuracy | Precision | Recall |
 |------|-----------|---------|----------|----------|-----------|--------|
-| 1 | KNN | feature_selected | 0.967 | 0.948 | 0.936 | 1.000 |
-| 2 | SVM | baseline | 0.966 | 0.948 | 0.956 | 0.977 |
-| 3 | SVM | smote | 0.966 | 0.948 | 0.956 | 0.977 |
-| 4 | XGBoost | baseline | 0.957 | 0.931 | 0.917 | 1.000 |
-| 5 | RandomForest | feature_selected | 0.957 | 0.931 | 0.917 | 1.000 |
+| 1 | SVM | baseline | 0.966 | 0.948 | 0.956 | 0.977 |
+| 2 | SVM | smote | 0.966 | 0.948 | 0.956 | 0.977 |
+| 3 | XGBoost | baseline | 0.957 | 0.931 | 0.917 | 1.000 |
+| 4 | RandomForest | smote | 0.956 | 0.931 | 0.935 | 0.977 |
+| 5 | XGBoost | smote | 0.956 | 0.931 | 0.935 | 0.977 |
 
 ## 6. Final Model Performance and Clinical Interpretation
 
-### 6.1 Best Model: KNN with Feature Selection
+### 6.1 Best Model: SVM with Baseline Features
 
 **Performance Metrics**:
-- **F1-Score**: 0.967 (excellent overall performance)
+- **F1-Score**: 0.966 (excellent overall performance)
 - **Accuracy**: 94.8% (high overall correctness)
-- **Sensitivity (Recall)**: 100% (perfect Parkinson's detection)
-- **Specificity**: 78.6% (good healthy identification)
-- **Precision**: 93.6% (low false positive rate)
-- **ROC-AUC**: 0.916 (excellent discrimination)
+- **Sensitivity (Recall)**: 97.7% (excellent Parkinson's detection)
+- **Specificity**: 85.7% (good healthy identification)
+- **Precision**: 95.6% (low false positive rate)
+- **ROC-AUC**: 0.964 (excellent discrimination)
 
 ### 6.2 Clinical Significance
 
 **Confusion Matrix Analysis**:
-- True Positives (TP): 44 (all Parkinson's cases correctly identified)
-- True Negatives (TN): 11 (healthy cases correctly identified)
-- False Positives (FP): 3 (healthy misclassified as Parkinson's)
-- False Negatives (FN): 0 (no missed Parkinson's cases)
+- True Positives (TP): 43 (most Parkinson's cases correctly identified)
+- True Negatives (TN): 12 (healthy cases correctly identified)
+- False Positives (FP): 2 (healthy misclassified as Parkinson's)
+- False Negatives (FN): 1 (one missed Parkinson's case)
 
 **Clinical Implications**:
-- **Perfect Sensitivity**: No Parkinson's cases missed (critical for screening)
-- **Acceptable Specificity**: 21.4% false positive rate manageable for screening
-- **High Precision**: 93.6% of positive predictions are correct
+- **Excellent Sensitivity**: Only one Parkinson's case missed (97.7% detection rate)
+- **Good Specificity**: 14.3% false positive rate acceptable for screening
+- **High Precision**: 95.6% of positive predictions are correct
 
-![Best Model Confusion Matrix](figures/confusion_matrix_KNN_feature_selected.png)
+![Best Model Confusion Matrix](figures/confusion_matrix_SVM_baseline.png)
 
-**Figure 4: Confusion Matrix for Best Model (KNN with Feature Selection)**
+**Figure 4: Confusion Matrix for Best Model (SVM with Baseline Features)**
 The confusion matrix for the best-performing model demonstrates excellent performance characteristics:
-- **Top-left (TN=11)**: Healthy cases correctly identified
-- **Top-right (FP=3)**: Healthy cases misclassified as Parkinson's (false positives)
-- **Bottom-left (FN=0)**: Zero missed Parkinson's cases (perfect sensitivity)
-- **Bottom-right (TP=44)**: All Parkinson's cases correctly identified
-The blue color intensity represents the count values, with the perfect 100% sensitivity being the most critical achievement for a medical screening tool.
+- **Top-left (TN=12)**: Healthy cases correctly identified
+- **Top-right (FP=2)**: Healthy cases misclassified as Parkinson's (false positives)
+- **Bottom-left (FN=1)**: One missed Parkinson's case (97.7% sensitivity)
+- **Bottom-right (TP=43)**: Most Parkinson's cases correctly identified
+The blue color intensity represents the count values, with the excellent 97.7% sensitivity being a critical achievement for a medical screening tool.
 
 ### 6.3 Medical Screening Context
 
 The model prioritizes sensitivity over specificity, which is appropriate for medical screening:
-- **Primary Goal**: Don't miss any Parkinson's cases (achieved: 100% sensitivity)
-- **Secondary Goal**: Minimize unnecessary referrals (achieved: 78.6% specificity)
+- **Primary Goal**: Don't miss any Parkinson's cases (achieved: 97.7% sensitivity)
+- **Secondary Goal**: Minimize unnecessary referrals (achieved: 85.7% specificity)
 - **Balance**: False positives lead to additional testing; false negatives lead to missed diagnosis
 
 ## 7. Model Explainability and Feature Importance
@@ -293,26 +293,27 @@ This traditional approach contrasts with SHAP analysis, which provides more bala
 
 | Rank | Feature | SHAP Importance | Clinical Interpretation |
 |------|---------|-----------------|------------------------|
-| 1 | jitter_stability_ratio | 0.046 | Voice stability measure (engineered) |
-| 2 | spread1 | 0.044 | Fundamental frequency variation |
-| 3 | MDVP:Flo(Hz) | 0.033 | Minimum vocal frequency |
-| 4 | spread2 | 0.033 | Nonlinear dynamical complexity |
-| 5 | MDVP:Fo(Hz) | 0.027 | Average fundamental frequency |
-| 6 | PPE | 0.026 | Pitch period entropy |
-| 7 | MDVP:Fhi(Hz) | 0.021 | Maximum vocal frequency |
-| 8 | MDVP:RAP | 0.020 | Relative average perturbation |
-| 9 | Jitter:DDP | 0.019 | Average absolute difference |
-| 10 | NHR | 0.016 | Noise-to-harmonics ratio |
+| 1 | D2 | 0.044 | Nonlinear dynamical complexity measure |
+| 2 | spread2 | 0.042 | Nonlinear fundamental frequency variation |
+| 3 | Jitter:DDP | 0.030 | Average absolute difference of jitter |
+| 4 | MDVP:RAP | 0.030 | Relative average perturbation |
+| 5 | MDVP:Fhi(Hz) | 0.022 | Maximum vocal frequency |
+| 6 | spread1 | 0.021 | Fundamental frequency variation |
+| 7 | DFA | 0.021 | Detrended fluctuation analysis |
+| 8 | frequency_cv | 0.020 | Frequency coefficient of variation (engineered) |
+| 9 | MDVP:Jitter(%) | 0.018 | Percentage jitter |
+| 10 | jitter_stability_ratio | 0.017 | Voice stability measure (engineered) |
 
 ![SHAP Summary Bar](figures/shap_summary_bar.png)
 
 **Figure 6: SHAP Feature Importance (Mean Absolute SHAP Values)**
 This bar chart shows the global feature importance based on mean absolute SHAP values. Key insights:
-- **jitter_stability_ratio** emerges as the most important feature (unlike traditional importance)
-- **spread1** follows closely, confirming its discriminative power
-- The importance distribution is more balanced compared to traditional methods
-- Multiple frequency and jitter-related features appear in top positions
-- The engineered features demonstrate significant importance, validating the feature engineering approach
+- **D2** emerges as the most important feature (~0.044), representing nonlinear dynamical complexity with the highest impact magnitude
+- **spread2** follows closely (~0.042), confirming nonlinear frequency variations are crucial
+- **Jitter:DDP** and **MDVP:RAP** (~0.030 each) represent key jitter measures with substantial impact
+- The importance distribution shows a clear hierarchy with D2 and spread2 dominating
+- Multiple engineered features (frequency_cv, jitter_stability_ratio) appear in the top 10, validating the feature engineering approach
+- The SHAP importance values show more balanced attribution compared to traditional tree-based importance
 
 ![SHAP Summary Detailed](figures/shap_summary_detailed.png)
 
@@ -322,47 +323,50 @@ This detailed SHAP summary plot reveals feature impact patterns:
 - **Vertical axis**: Features ranked by importance
 - **Color**: Feature value (red=high, blue=low)
 - **Key patterns**:
-  - High jitter_stability_ratio values (red) push toward healthy classification (negative SHAP)
-  - High spread1 values (red) push toward Parkinson's classification (positive SHAP)
-  - MDVP:Flo(Hz) shows interesting bidirectional effects
-  - The spread of dots indicates the consistency of feature effects across different patients
+  - D2 shows high variability with both positive and negative SHAP values, indicating complex non-linear relationships
+  - spread2 values generally push toward Parkinson's classification (positive SHAP values)
+  - Jitter:DDP and MDVP:RAP show bidirectional effects depending on feature values
+  - MDVP:Fhi(Hz) shows interesting pattern where high values (red) tend toward negative SHAP (healthy prediction)
+  - The spread of dots indicates the variability of feature effects across different patients
 
 ### 7.3 Local Explanations
 
 **Individual Case Analysis**:
-- **Healthy Case**: Lower spread1, PPE values push prediction toward healthy
-- **Parkinson's Case**: Higher spread1, PPE, and MDVP:PPQ values push toward Parkinson's
-- **Feature Interactions**: Model captures complex relationships between voice measures
+- **Healthy Case**: Despite higher D2 value pushing toward Parkinson's, jitter measures (Jitter:DDP, MDVP:RAP) and spread1 collectively push toward healthy classification
+- **Parkinson's Case**: Multiple jitter measures (Jitter:DDP, MDVP:RAP), spread1, DFA, and PPE all contribute positive evidence toward Parkinson's classification
+- **Feature Interactions**: Model demonstrates complex, patient-specific feature interactions where the same feature can have different impacts depending on the individual's voice profile
 
 ![SHAP Local Healthy](figures/shap_local_healthy.png)
 
 **Figure 8: SHAP Waterfall Plot - Correctly Classified Healthy Case**
 This waterfall plot shows how individual features contribute to predicting a healthy case:
-- **Starting point**: f(x) = 0 (model baseline)
-- **Ending point**: E[f(X)] = 0.753 (expected model output)
+- **Starting point**: f(x) = 0.523 (baseline prediction)
+- **Ending point**: E[f(X)] = 0.745 (expected model output)
 - **Key contributors to healthy prediction**:
-  - PPE (-0.14) and spread1 (-0.14) strongly push toward healthy
-  - Multiple features provide smaller negative contributions
-- The cumulative effect of all features results in a prediction well below the classification threshold
+  - Jitter:DDP (-0.06), MDVP:RAP (-0.06), and spread1 (-0.04) push toward healthy classification
+  - D2 (+0.09) actually pushes toward Parkinson's but is outweighed by other features
+  - Multiple smaller features provide additional negative contributions
+- The cumulative effect results in a prediction below the classification threshold, correctly identifying as healthy
 
 ![SHAP Local Parkinson](figures/shap_local_parkinson.png)
 
 **Figure 9: SHAP Waterfall Plot - Correctly Classified Parkinson's Case**
 This waterfall plot demonstrates feature contributions for a Parkinson's case:
-- **Starting point**: f(x) = 1 (positive classification)
-- **Ending point**: E[f(X)] = 0.753 (expected model output)
+- **Starting point**: f(x) = 0.997 (high baseline prediction)
+- **Ending point**: E[f(X)] = 0.745 (expected model output)
 - **Key contributors to Parkinson's prediction**:
-  - spread1 (+0.05) and PPE (+0.03) push toward Parkinson's classification
-  - MDVP:PPQ (+0.03) provides additional positive evidence
-- The cumulative effect pushes the prediction above the classification threshold, correctly identifying Parkinson's
+  - Jitter:DDP (+0.04), MDVP:RAP (+0.04), and spread1 (+0.04) all push toward Parkinson's classification
+  - DFA (+0.03) and PPE (+0.03) provide additional positive evidence
+  - spread2 (+0.02) and other features contribute smaller positive effects
+- The cumulative effect pushes the prediction well above the classification threshold, correctly identifying Parkinson's
 
 ### 7.4 Clinical Feature Interpretation
 
 **Most Discriminative Voice Patterns**:
-1. **Frequency Variation (spread1, spread2)**: Parkinson's patients show increased variability
-2. **Pitch Entropy (PPE)**: Higher entropy indicates irregular pitch patterns
-3. **Jitter Measures**: Stability ratios reveal micro-variations in vocal fold vibration
-4. **Frequency Range**: Reduced vocal flexibility in Parkinson's patients
+1. **Nonlinear Dynamics (D2, DFA)**: Complex relationships where D2 shows variable effects but high impact magnitude, indicating sophisticated voice complexity patterns in Parkinson's
+2. **Frequency Variation (spread1, spread2)**: spread2 consistently pushes toward Parkinson's classification, while spread1 shows bidirectional effects
+3. **Jitter Measures**: Jitter:DDP and MDVP:RAP demonstrate strong directional effects in both individual cases, representing critical micro-variations in vocal fold vibration
+4. **Frequency Characteristics**: MDVP:Fhi(Hz) shows interesting pattern where higher maximum frequencies tend to indicate healthier voice patterns
 
 ### 7.5 Comparison of Feature Importance Methods
 
@@ -377,14 +381,14 @@ The comparison between traditional Random Forest importance (Figure 5) and SHAP 
 **SHAP Importance**:
 - Uses game theory-based feature attribution
 - Shows more balanced importance distribution
-- Elevates engineered features (jitter_stability_ratio) to top position
+- Highlights nonlinear dynamics features (D2) and frequency variations (spread2)
 - Captures feature interactions and conditional effects
 
 **Clinical Implications**:
-- SHAP suggests that engineered composite features may be more important than individual traditional measures
-- The more balanced SHAP attribution may be more clinically relevant for understanding voice pathology
-- Both methods agree on the importance of jitter and frequency variation measures
-- SHAP provides better insight into how features work together in individual predictions
+- SHAP reveals the complexity of voice pathology where D2 (nonlinear dynamics) has the highest impact magnitude but shows variable directional effects across patients
+- The individual case analysis demonstrates that the same feature can contribute differently for different patients, highlighting the personalized nature of voice biomarkers
+- Jitter measures (Jitter:DDP, MDVP:RAP) show consistent directional patterns across cases, making them reliable discriminative features
+- SHAP provides crucial insight into feature interactions, showing that voice pathology classification depends on complex combinations of features rather than single dominant predictors
 
 ## 8. Statistical Power and Sample Size Adequacy
 
@@ -466,19 +470,19 @@ To provide comprehensive insight into model performance across different approac
 ### 12.1 Additional Confusion Matrices Available
 
 The project generated confusion matrices for all top-performing models:
-- `confusion_matrix_KNN_feature_selected.png` (Best model - shown in Figure 4)
-- `confusion_matrix_SVM_baseline.png` (Second best)
-- `confusion_matrix_SVM_smote.png` (Third best)
-- `confusion_matrix_XGBoost_baseline.png` (Fourth best)
-- `confusion_matrix_RandomForest_feature_selected.png` (Fifth best)
+- `confusion_matrix_SVM_baseline.png` (Best model - shown in Figure 4)
+- `confusion_matrix_SVM_smote.png` (Second best)
+- `confusion_matrix_XGBoost_baseline.png` (Third best)
+- `confusion_matrix_RandomForest_smote.png` (Fourth best)
+- `confusion_matrix_XGBoost_smote.png` (Fifth best)
 
 ### 12.2 Performance Pattern Analysis
 
 Across all confusion matrices, consistent patterns emerge:
-- **High Sensitivity**: Most models achieve perfect or near-perfect sensitivity (no/few false negatives)
+- **High Sensitivity**: Most models achieve excellent sensitivity (97.7-100% detection rates)
 - **Variable Specificity**: The main difference between models lies in their false positive rates
 - **Clinical Suitability**: All top models prioritize sensitivity over specificity, appropriate for screening
-- **Feature Selection Impact**: Models with feature selection tend to have cleaner performance patterns
+- **Algorithm Impact**: SVM models show excellent balance between sensitivity and specificity
 
 ### 12.3 Visual Summary of Results
 
@@ -496,9 +500,9 @@ This multi-layered visualization strategy ensures both technical rigor and clini
 This project successfully developed a high-performance machine learning pipeline for Parkinson's disease detection using voice biomarkers. The systematic approach, combining rigorous statistical analysis, domain-informed feature engineering, and explainable AI, resulted in a clinically interpretable model with excellent performance metrics.
 
 **Key Achievements**:
-1. **Excellent Performance**: 96.7% F1-score with 100% sensitivity
+1. **Excellent Performance**: 96.6% F1-score with 97.7% sensitivity
 2. **Statistical Rigor**: Comprehensive analysis with appropriate non-parametric tests
-3. **Clinical Relevance**: Perfect screening sensitivity with acceptable false positive rate
+3. **Clinical Relevance**: Excellent screening sensitivity with good specificity
 4. **Interpretability**: SHAP analysis revealing important voice patterns
 5. **Reproducible Pipeline**: Systematic workflow with quality assurance
 
@@ -509,6 +513,6 @@ This project successfully developed a high-performance machine learning pipeline
 - Consensus feature selection improved robustness
 
 **Clinical Impact Potential**:
-The model demonstrates strong potential for real-world screening applications, with performance characteristics suitable for early detection programs. The combination of high sensitivity and explainable predictions supports clinical decision-making and patient care.
+The model demonstrates strong potential for real-world screening applications, with performance characteristics suitable for early detection programs. The combination of excellent sensitivity (97.7%) and good specificity (85.7%) with explainable predictions supports clinical decision-making and patient care.
 
 **Project Timeline**: Successfully completed all 7 major workflow phases with 30 trained models, comprehensive evaluation, and clinical interpretation, demonstrating the effectiveness of the systematic approach to medical machine learning applications.

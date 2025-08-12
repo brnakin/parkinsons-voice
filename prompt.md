@@ -4,6 +4,7 @@
 
 **Objective**: Develop a classification model to predict whether a person has Parkinson's disease using vocal biomarkers extracted from sustained phonations. Early diagnosis may help patients get better care and treatment.
 **Dataset**: UCI Parkinson's Dataset
+**Role**: Data Scientist specializing in medical machine learning
 
 ## Environment & Setup
 
@@ -13,7 +14,15 @@
 conda activate university-machine-learning-project-parkinsons-voice-v3
 ```
 
-### Project Roadmap
+### Development Workflow
+
+**Commentary**: Precede each cell with a brief note on what it does and why
+**Code Structure**: Provide Jupyter cells using # %% and # %% [markdown]
+**Self-Execute & Reflect**: Mentally "run" each cell, inspect outputs, and integrate findings
+**Documentation**: Comment and explain every line of code
+**File Organization**: Save each section's code to 'parkinson.py' Python file
+**Execution Control**: Wait for "OK, run this" signal before proceeding
+
 
 1. Data Collection
 1.1 Download the data with wget if it is not already downloaded
@@ -28,12 +37,14 @@ conda activate university-machine-learning-project-parkinsons-voice-v3
 3. Exploratory Data Analysis (EDA)
 3.1 Load data/parkinsons.data with correct headers
 3.2 Inspect shape, info, missing values, duplicates
-3.3 Analyze target distribution and class-imbalance ratio (≈3:1)
-3.4 Perform Mann–Whitney U tests
-3.5 Calculate Cohen’s d for all significant features
-3.6 Conduct post-hoc statistical power analysis using the observed Cohen’s d
-3.7 Plot histograms, box plots, density plots for the just a few key points
-3.8 Draw correlation heatmap for all numerical features with target variable
+3.3 Check data/parkinsons.names for metadata
+3.4 Analyze target distribution and class-imbalance ratio (≈3:1)
+3.5 Generate descriptive statistics for all 22 numerical features
+3.6 Perform Mann–Whitney U tests
+3.7 Calculate Cohen’s d for all significant features
+3.8 Conduct post-hoc statistical power analysis using the observed Cohen’s d
+3.9 Plot histograms, box plots, density plots for the just a few key points
+3.10 Draw correlation heatmap for all numerical features with target variable
 
 4. Feature Engineering
 4.1 Compute jitter_stability_ratio:
@@ -53,20 +64,27 @@ conda activate university-machine-learning-project-parkinsons-voice-v3
 5.2 Split data stratified by status and by name for LOSO CV
 5.3 Scale features with RobustScaler to handle outliers
 5.4 Balance classes with SMOTE to achieve 1:1 ratio
-5.5 Combine statistical and RF-based methods into consensus set
-5.6 Apply PCA to retain 95% variance
-5.7 Create dataset variants: Baseline, SMOTE, Feature-Selected, SMOTE+Feature, PCA
-5.8 Save the datasets
+5.5 Apply cost-sensitive weighting in model loss functions
+5.6 Compute correlation matrix and drop highly correlated features
+5.7 Calculate VIF and remove features with VIF > threshold
+5.8 Run Recursive Feature Elimination (RFE) and sequential selection
+5.9 Use L1 (Lasso) or ElasticNet for embedded feature selection
+5.10 Combine statistical and RF-based methods into consensus set
+5.11 Apply PCA to retain 95% variance
+5.12 Create dataset variants: Baseline, SMOTE, Feature-Selected, SMOTE+Feature, PCA
+5.13 Save the datasets
 
 6. Model Training
 6.1 Load the datasets
-6.2 Define algorithms: Random Forest, Support Vector Machine (SVM), Logistic Regression, XGBoost, K-Nearest Neighbors (KNN), Decision Tree
+6.2 Define algorithms: Random Forest, Support Vector Machine (SVM), Logistic Regression with Regularization, XGBoost, K-Nearest Neighbors (KNN), Naive Bayes (Gaussian), Decision Tree with Pruning, Ensemble Voting Classifier
 6.3 Set up hyperparameter grids for GridSearch
-6.4 Train all model-dataset combos
-6.5 Track F1, accuracy, precision, recall, ROC-AUC, balanced accuracy
-6.6 Identify top 5 models by validation F1
-6.7 Document feature importance rankings for tree-based models
-6.8 Save top 5 models for evaluation
+6.4 Implement nested CV with outer LOSO and inner 5-fold stratified splits
+6.5 Train all model-dataset combos (≈8 algos × 5 variants)
+6.6 Track F1, accuracy, precision, recall, ROC-AUC, balanced accuracy
+6.7 Identify top 5 models by validation F1
+6.8 Validate model stability across different random seeds
+6.9 Document feature importance rankings for tree-based models
+6.10 Save top 5 models for evaluation
 
 7. Model Evaluation & Explainability
 7.1 Evaluate top 5 models on held-out test set

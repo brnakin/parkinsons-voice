@@ -153,11 +153,11 @@
     {
       "algorithm": "RandomForest",
       "dataset": "feature_selected",
-      "cv_f1": 0.9313907369226518,
-      "test_f1": 0.945054945054945,
+      "cv_f1": 0.9437270331863099,
+      "test_f1": 0.946236559139785,
       "test_accuracy": 0.9137931034482759,
-      "test_precision": 0.9148936170212766,
-      "test_recall": 0.9772727272727273,
+      "test_precision": 0.8979591836734694,
+      "test_recall": 1.0,
       "best_params": {
         "max_depth": 10,
         "n_estimators": 100
@@ -166,85 +166,10 @@
     {
       "algorithm": "SVM",
       "dataset": "feature_selected",
-      "cv_f1": 0.8475044199646403,
-      "test_f1": 0.9545454545454546,
-      "test_accuracy": 0.9310344827586207,
-      "test_precision": 0.9545454545454546,
-      "test_recall": 0.9545454545454546,
-      "best_params": {
-        "C": 10,
-        "kernel": "linear"
-      }
-    },
-    {
-      "algorithm": "LogisticRegression",
-      "dataset": "feature_selected",
-      "cv_f1": 0.8293752786776043,
+      "cv_f1": 0.8760446738047717,
       "test_f1": 0.9213483146067416,
       "test_accuracy": 0.8793103448275862,
       "test_precision": 0.9111111111111111,
-      "test_recall": 0.9318181818181818,
-      "best_params": {
-        "C": 10
-      }
-    },
-    {
-      "algorithm": "KNN",
-      "dataset": "feature_selected",
-      "cv_f1": 0.9159578742505572,
-      "test_f1": 0.945054945054945,
-      "test_accuracy": 0.9137931034482759,
-      "test_precision": 0.9148936170212766,
-      "test_recall": 0.9772727272727273,
-      "best_params": {
-        "n_neighbors": 7
-      }
-    },
-    {
-      "algorithm": "DecisionTree",
-      "dataset": "feature_selected",
-      "cv_f1": 0.9218058603812536,
-      "test_f1": 0.9438202247191011,
-      "test_accuracy": 0.9137931034482759,
-      "test_precision": 0.9333333333333333,
-      "test_recall": 0.9545454545454546,
-      "best_params": {
-        "max_depth": 10
-      }
-    },
-    {
-      "algorithm": "XGBoost",
-      "dataset": "feature_selected",
-      "cv_f1": 0.9562754781359433,
-      "test_f1": 0.9333333333333333,
-      "test_accuracy": 0.896551724137931,
-      "test_precision": 0.9130434782608695,
-      "test_recall": 0.9545454545454546,
-      "best_params": {
-        "max_depth": 5,
-        "n_estimators": 100
-      }
-    },
-    {
-      "algorithm": "RandomForest",
-      "dataset": "smote_feature",
-      "cv_f1": 0.9543132220795891,
-      "test_f1": 0.9555555555555556,
-      "test_accuracy": 0.9310344827586207,
-      "test_precision": 0.9347826086956522,
-      "test_recall": 0.9772727272727273,
-      "best_params": {
-        "max_depth": 10,
-        "n_estimators": 200
-      }
-    },
-    {
-      "algorithm": "SVM",
-      "dataset": "smote_feature",
-      "cv_f1": 0.8706010805625697,
-      "test_f1": 0.9318181818181818,
-      "test_accuracy": 0.896551724137931,
-      "test_precision": 0.9318181818181818,
       "test_recall": 0.9318181818181818,
       "best_params": {
         "C": 10,
@@ -253,12 +178,87 @@
     },
     {
       "algorithm": "LogisticRegression",
-      "dataset": "smote_feature",
-      "cv_f1": 0.8136096338406993,
-      "test_f1": 0.9333333333333333,
+      "dataset": "feature_selected",
+      "cv_f1": 0.8496139515992039,
+      "test_f1": 0.896551724137931,
+      "test_accuracy": 0.8448275862068966,
+      "test_precision": 0.9069767441860465,
+      "test_recall": 0.8863636363636364,
+      "best_params": {
+        "C": 1
+      }
+    },
+    {
+      "algorithm": "KNN",
+      "dataset": "feature_selected",
+      "cv_f1": 0.9268596315964738,
+      "test_f1": 0.9347826086956522,
       "test_accuracy": 0.896551724137931,
-      "test_precision": 0.9130434782608695,
-      "test_recall": 0.9545454545454546,
+      "test_precision": 0.8958333333333334,
+      "test_recall": 0.9772727272727273,
+      "best_params": {
+        "n_neighbors": 3
+      }
+    },
+    {
+      "algorithm": "DecisionTree",
+      "dataset": "feature_selected",
+      "cv_f1": 0.9117552016921332,
+      "test_f1": 0.896551724137931,
+      "test_accuracy": 0.8448275862068966,
+      "test_precision": 0.9069767441860465,
+      "test_recall": 0.8863636363636364,
+      "best_params": {
+        "max_depth": 5
+      }
+    },
+    {
+      "algorithm": "XGBoost",
+      "dataset": "feature_selected",
+      "cv_f1": 0.9384970257573775,
+      "test_f1": 0.946236559139785,
+      "test_accuracy": 0.9137931034482759,
+      "test_precision": 0.8979591836734694,
+      "test_recall": 1.0,
+      "best_params": {
+        "max_depth": 3,
+        "n_estimators": 100
+      }
+    },
+    {
+      "algorithm": "RandomForest",
+      "dataset": "smote_feature",
+      "cv_f1": 0.9599498746867168,
+      "test_f1": 0.945054945054945,
+      "test_accuracy": 0.9137931034482759,
+      "test_precision": 0.9148936170212766,
+      "test_recall": 0.9772727272727273,
+      "best_params": {
+        "max_depth": 10,
+        "n_estimators": 100
+      }
+    },
+    {
+      "algorithm": "SVM",
+      "dataset": "smote_feature",
+      "cv_f1": 0.9256275303643726,
+      "test_f1": 0.945054945054945,
+      "test_accuracy": 0.9137931034482759,
+      "test_precision": 0.9148936170212766,
+      "test_recall": 0.9772727272727273,
+      "best_params": {
+        "C": 10,
+        "kernel": "rbf"
+      }
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "dataset": "smote_feature",
+      "cv_f1": 0.8225696172452597,
+      "test_f1": 0.896551724137931,
+      "test_accuracy": 0.8448275862068966,
+      "test_precision": 0.9069767441860465,
+      "test_recall": 0.8863636363636364,
       "best_params": {
         "C": 10
       }
@@ -266,37 +266,37 @@
     {
       "algorithm": "KNN",
       "dataset": "smote_feature",
-      "cv_f1": 0.9104146722751374,
-      "test_f1": 0.9069767441860465,
-      "test_accuracy": 0.8620689655172413,
-      "test_precision": 0.9285714285714286,
-      "test_recall": 0.8863636363636364,
+      "cv_f1": 0.9121829521829522,
+      "test_f1": 0.9545454545454546,
+      "test_accuracy": 0.9310344827586207,
+      "test_precision": 0.9545454545454546,
+      "test_recall": 0.9545454545454546,
       "best_params": {
-        "n_neighbors": 5
+        "n_neighbors": 3
       }
     },
     {
       "algorithm": "DecisionTree",
       "dataset": "smote_feature",
-      "cv_f1": 0.9053470919324578,
-      "test_f1": 0.8837209302325582,
-      "test_accuracy": 0.8275862068965517,
-      "test_precision": 0.9047619047619048,
-      "test_recall": 0.8636363636363636,
+      "cv_f1": 0.9124585854881107,
+      "test_f1": 0.9069767441860465,
+      "test_accuracy": 0.8620689655172413,
+      "test_precision": 0.9285714285714286,
+      "test_recall": 0.8863636363636364,
       "best_params": {
-        "max_depth": 5
+        "max_depth": 10
       }
     },
     {
       "algorithm": "XGBoost",
       "dataset": "smote_feature",
-      "cv_f1": 0.9354245820099478,
-      "test_f1": 0.9438202247191011,
+      "cv_f1": 0.9555596307842779,
+      "test_f1": 0.945054945054945,
       "test_accuracy": 0.9137931034482759,
-      "test_precision": 0.9333333333333333,
-      "test_recall": 0.9545454545454546,
+      "test_precision": 0.9148936170212766,
+      "test_recall": 0.9772727272727273,
       "best_params": {
-        "max_depth": 3,
+        "max_depth": 5,
         "n_estimators": 100
       }
     },
@@ -512,7 +512,7 @@
   },
   "metadata": {
     "random_state": 42,
-    "timestamp": "2025-06-24T04:09:14.476124",
+    "timestamp": "2025-07-11T22:52:01.659581",
     "n_models_trained": 30
   }
 }

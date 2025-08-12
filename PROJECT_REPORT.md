@@ -58,7 +58,6 @@ The target distribution visualization clearly shows the class imbalance in the d
   - PPE: d = 1.447 (very large)
   - spread2: d = 1.180 (large)
 - Guided feature selection by prioritizing clinically meaningful differences
-- Informed power analysis calculations
 
 #### 2.2.3 Post-hoc Statistical Power Analysis
 
@@ -70,7 +69,6 @@ The target distribution visualization clearly shows the class imbalance in the d
 - Confirmed high power (≥0.8) for 20/22 features
 - Sample size adequacy validation: effective n = 65.4 (harmonic mean for unequal groups)
 - Built confidence in statistical findings despite modest sample size
-- Informed feature selection prioritization
 
 ### 2.3 Exploratory Data Analysis (EDA)
 
@@ -340,8 +338,8 @@ This detailed SHAP summary plot reveals feature impact patterns:
 
 **Figure 8: SHAP Waterfall Plot - Correctly Classified Healthy Case**
 This waterfall plot shows how individual features contribute to predicting a healthy case:
-- **Starting point**: f(x) = 0.523 (baseline prediction)
-- **Ending point**: E[f(X)] = 0.745 (expected model output)
+- **Ending point**: f(x) = 0.523 (baseline prediction)
+- **Starting point**: E[f(X)] = 0.745 (expected model output)
 - **Key contributors to healthy prediction**:
   - Jitter:DDP (-0.06), MDVP:RAP (-0.06), and spread1 (-0.04) push toward healthy classification
   - D2 (+0.09) actually pushes toward Parkinson's but is outweighed by other features
@@ -352,8 +350,8 @@ This waterfall plot shows how individual features contribute to predicting a hea
 
 **Figure 9: SHAP Waterfall Plot - Correctly Classified Parkinson's Case**
 This waterfall plot demonstrates feature contributions for a Parkinson's case:
-- **Starting point**: f(x) = 0.997 (high baseline prediction)
-- **Ending point**: E[f(X)] = 0.745 (expected model output)
+- **Ending point**: f(x) = 0.997 (high baseline prediction)
+- **Starting point**: E[f(X)] = 0.745 (expected model output)
 - **Key contributors to Parkinson's prediction**:
   - Jitter:DDP (+0.04), MDVP:RAP (+0.04), and spread1 (+0.04) all push toward Parkinson's classification
   - DFA (+0.03) and PPE (+0.03) provide additional positive evidence
@@ -459,43 +457,10 @@ The comparison between traditional Random Forest importance (Figure 5) and SHAP 
 ### 11.2 Clinical Decision Support
 
 **Risk Stratification**:
-- Perfect sensitivity ensures no missed cases
-- 21.4% false positive rate acceptable for screening context
-- Follow-up protocols needed for positive screens
+- Perfect sensitivity ensures almost no missed cases
+- Around 14% false positive rate acceptable for screening context
 
-## 12. Visual Model Performance Comparison
-
-To provide comprehensive insight into model performance across different approaches, the following figures show additional confusion matrices for comparison:
-
-### 12.1 Additional Confusion Matrices Available
-
-The project generated confusion matrices for all top-performing models:
-- `confusion_matrix_SVM_baseline.png` (Best model - shown in Figure 4)
-- `confusion_matrix_SVM_smote.png` (Second best)
-- `confusion_matrix_XGBoost_baseline.png` (Third best)
-- `confusion_matrix_RandomForest_smote.png` (Fourth best)
-- `confusion_matrix_XGBoost_smote.png` (Fifth best)
-
-### 12.2 Performance Pattern Analysis
-
-Across all confusion matrices, consistent patterns emerge:
-- **High Sensitivity**: Most models achieve excellent sensitivity (97.7-100% detection rates)
-- **Variable Specificity**: The main difference between models lies in their false positive rates
-- **Clinical Suitability**: All top models prioritize sensitivity over specificity, appropriate for screening
-- **Algorithm Impact**: SVM models show excellent balance between sensitivity and specificity
-
-### 12.3 Visual Summary of Results
-
-The comprehensive visualization approach in this project includes:
-1. **Exploratory Analysis**: Target distribution and feature distributions (Figures 1, 3)
-2. **Correlation Analysis**: Feature relationships and patterns (Figure 2)
-3. **Model Performance**: Confusion matrix for clinical interpretation (Figure 4)
-4. **Feature Importance**: Both traditional and SHAP-based analysis (Figures 5, 6, 7)
-5. **Individual Explanations**: Patient-level prediction explanations (Figures 8, 9)
-
-This multi-layered visualization strategy ensures both technical rigor and clinical interpretability.
-
-## 13. Conclusion
+## 12. Conclusion
 
 This project successfully developed a high-performance machine learning pipeline for Parkinson's disease detection using voice biomarkers. The systematic approach, combining rigorous statistical analysis, domain-informed feature engineering, and explainable AI, resulted in a clinically interpretable model with excellent performance metrics.
 
